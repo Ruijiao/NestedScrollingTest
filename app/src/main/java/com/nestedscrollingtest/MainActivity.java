@@ -1,6 +1,7 @@
 package com.nestedscrollingtest;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -52,17 +53,17 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(mAdapter);
         viewPager.setCurrentItem(0);
 
-//        recyclerRefreshLayout = (RecyclerRefreshLayout) findViewById(R.id.refresh_layout);
-//        recyclerRefreshLayout.setOnRefreshListener(new RecyclerRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        recyclerRefreshLayout.setRefreshing(false);
-//                    }
-//                },2000);
-//            }
-//        });
+        recyclerRefreshLayout = (RecyclerRefreshLayout) findViewById(R.id.refresh_layout);
+        recyclerRefreshLayout.setOnRefreshListener(new RecyclerRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerRefreshLayout.setRefreshing(false);
+                    }
+                },1000);
+            }
+        });
     }
 }
