@@ -72,12 +72,15 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
             boolean showTop = dy < 0 && getScrollY() > 0 && !ViewCompat.canScrollVertically(target, -1);
             if (hiddenTop || showTop)
             {
+                titleIsShow = false;
                 mTitleView.setVisibility(View.GONE);
+                reSetViewPagerHeight();
                 scrollBy(0, dy);
                 consumed[1] = dy;
             }else if(getScrollY() > 0){
-                titleIsShow = false;
+                titleIsShow = true;
                 mTitleView.setVisibility(View.VISIBLE);
+                reSetViewPagerHeight();
             }
         }
     }
@@ -102,8 +105,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     @Override
     public void scrollTo(int x, int y)
     {
-        titleIsShow = true;
+        titleIsShow = false;
         mTitleView.setVisibility(View.GONE);
+        reSetViewPagerHeight();
         if (y < 0){
             y = 0;
         }
@@ -119,10 +123,13 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        reSetViewPagerHeight();
+    }
+
+    private void reSetViewPagerHeight(){
         ViewGroup.LayoutParams params = mViewPager.getLayoutParams();
-        if(titleIsShow){
+        if(titleIsShow)
             params.height = getMeasuredHeight() - Tools.dp2px(getContext(),68);
-        }
         else
             params.height = getMeasuredHeight();
     }
