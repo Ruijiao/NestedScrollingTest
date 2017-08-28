@@ -1,21 +1,24 @@
 package com.widght;
 
 import android.content.Context;
-import android.support.v4.view.NestedScrollingParent;
+import android.support.v4.view.NestedScrollingChild;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
+import com.nestedscrollingtest.R;
 import com.tools.Tools;
 
 /**
  * Created by Fang Ruijiao on 2016/9/28.
  */
-public class StickyNavLayout extends LinearLayout implements NestedScrollingParent {
+public class StickyNavLayout extends LinearLayout implements NestedScrollingChild {
 
     private Scroller mScroller;
     public int mTopViewHeight = 0;
@@ -38,6 +41,33 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
 
     private void init(){
         mScroller = new Scroller(getContext());
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        findViewById(R.id.a_main_head).setOnTouchListener(new OnTouchListener() {
+            float downY;
+            float moveY;
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        Log.i("nestedScroll","parent onTouch() downY:" + downY);
+                        downY = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        moveY = motionEvent.getY();
+                        scrollBy(0, (int) (downY - moveY));
+                        Log.i("nestedScroll","parent onTouch() moveY:" + moveY);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -67,6 +97,9 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
 
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
+        Log.i("stickyNayLayout","onNestedPreScroll() dy:" + dy);
+        Log.i("stickyNayLayout","getScrollY():" + getScrollY());
+        Log.i("stickyNayLayout","mTopViewHeight:" + mTopViewHeight);
         if(dy != 0){ //当没滑动时，不处理
             boolean hiddenTop = dy > 0 && getScrollY() < mTopViewHeight;
             boolean showTop = dy < 0 && getScrollY() > 0 && !ViewCompat.canScrollVertically(target, -1);

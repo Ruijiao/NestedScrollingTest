@@ -1,86 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.dinuscxj.refresh.RecyclerRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/refresh_layout"
+<com.widght.StickyNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.widght.StickyNavLayout
-        android:id="@+id/activity_main"
+    <LinearLayout
+        android:id="@+id/a_main_head"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/a_main_head"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#999999"
+            android:gravity="center"
+            android:text="测试"
+            android:textColor="#fff" />
+
+        <com.view.ExpandableTextView
+            android:id="@+id/expandableTextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:contentTextColor="@color/colorPrimary"
+            app:maxCollapsedLines="4" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:background="#999999"
-                android:gravity="center"
-                android:text="测试"
-                android:textColor="#fff" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="23dp"
-                android:orientation="horizontal">
-
-                <include
-                    layout="@layout/a_main_tab_item"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/a_main_tab_item"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-        </LinearLayout>
+        <!--<TextView-->
+        <!--android:id="@+id/expandableTextview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
         <LinearLayout
-            android:id="@+id/a_main_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_height="23dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:gravity="center"
-                android:text="我是大标题" />
+            <include
+                layout="@layout/a_main_tab_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-            <LinearLayout
-                android:id="@+id/a_main_title_tab"
-                android:layout_width="match_parent"
-                android:layout_height="23dp"
-                android:orientation="horizontal">
-
-                <include
-                    layout="@layout/a_main_tab_item"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <include
-                    layout="@layout/a_main_tab_item"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
+            <include
+                layout="@layout/a_main_tab_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
         </LinearLayout>
+    </LinearLayout>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/a_main_viewpager"
+    <LinearLayout
+        android:id="@+id/a_main_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="我是大标题" />
+
+        <LinearLayout
+            android:id="@+id/a_main_title_tab"
+            android:layout_width="match_parent"
+            android:layout_height="23dp"
+            android:orientation="horizontal">
+
+            <include
+                layout="@layout/a_main_tab_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <include
+                layout="@layout/a_main_tab_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/a_main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
-    </com.widght.StickyNavLayout>
-</com.dinuscxj.refresh.RecyclerRefreshLayout>
+</com.widght.StickyNavLayout>

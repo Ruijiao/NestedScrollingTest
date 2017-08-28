@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppLauch" parent="Theme.AppCompat.Light">
+        <item name="android:windowBackground">@drawable/branded_launch_screens</item>
+    </style>
+
 </resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:id="@+id/a_dish_detail_new_xiangguan_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="2dp"
+        >
+        <LinearLayout
+            android:id="@+id/a_dish_detail_new_xiangguan_scroll_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <include
+                layout="@layout/a_dish_detail_new_footer_item"/>
+
+            <include
+                layout="@layout/a_dish_detail_new_footer_item"/>
+
+            <include
+                layout="@layout/a_dish_detail_new_footer_item"/>
+
+            <include
+                layout="@layout/a_dish_detail_new_footer_item"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
